@@ -12,6 +12,7 @@ body {
     top: 50%;
     left: 50%;
     font-family: DM Sans;
+    
 
     transform: translate(-50%, -50%);
 }
@@ -26,20 +27,22 @@ body {
     
 }
 
-.login-box h1 {
+h1 {
 
     font-size: 32px;
     text-align: center;
-    font-weight: 800; 
+    font-weight: 800;
+    margin-top: 100px ; 
     font-family: Poppins Medium;
 }
 
-.login-box h4 {
+h4 {
     text-align: center;
     font-size: 12px;
     text-align: center;
     font-family: DM Sans;
     font-weight: 400%;
+    margin-top: 5px;
 }
 
 
