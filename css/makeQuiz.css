@@ -2,17 +2,14 @@
 body {
     margin: 0;
     padding: 0;
-    
-
 }
 
 .login-box {
-    width: 350px;
+    width: 230px;
     position: absolute;
     top: 50%;
     left: 50%;
     font-family: DM Sans;
-    
 
     transform: translate(-50%, -50%);
 }
@@ -23,8 +20,8 @@ body {
     height: 35px;
     border: 0.5px solid black;
     padding-left: 4%;
-    font-family: Poppins Light ;
-    
+    font-family: Poppins Light;
+
 }
 
 h1 {
@@ -32,33 +29,33 @@ h1 {
     font-size: 32px;
     text-align: center;
     font-weight: 800;
-    margin-top: 220px ; 
+    margin-top: 200px;
     font-family: Poppins Medium;
 }
 
 h4 {
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
-    font-family: DM Sans;
+    font-family: Poppins Bold;
     font-weight: 400%;
     margin-top: 5px;
 }
 
 
 .btn-login {
-    width: 150px;
-    border: 2px solid black;
-    color: white;
-    padding: 2px;
-    background-color: black;
-    font-size: 18px;
-    cursor: pointer;
-    margin-top: 15px;
-    font-family: Poppins Bold;
-    margin-left: 610px;
-    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    }
 
+.btn-login input {
+    background-color: black;
+    color: white;
+    margin-top: 12px;
+    font-family: DM Sans;
+    width: 195px;
+    height: 35  px;
 }
 
 .textbox i {
@@ -73,7 +70,7 @@ h4 {
     color: black;
     font-size: 18px;
     margin-top: 15px;
-    font-family: Poppins Light ;
+    font-family: Poppins Light;
     border: 1px solid black;
     padding-left: 2%;
 }
