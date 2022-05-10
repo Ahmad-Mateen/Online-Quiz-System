@@ -9,8 +9,6 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    font-family: DM Sans;
-
     transform: translate(-50%, -50%);
 }
 
@@ -20,24 +18,20 @@ body {
     height: 35px;
     border: 0.5px solid black;
     padding-left: 4%;
-    font-family: Poppins Light;
-
 }
 
 h1 {
 
     font-size: 32px;
     text-align: center;
-    font-weight: 800;
+    font-weight: 600;
     margin-top: 200px;
-    font-family: Poppins Medium;
 }
 
 h4 {
     text-align: center;
     font-size: 13px;
     text-align: center;
-    font-family: Poppins Bold;
     font-weight: 400%;
     margin-top: 5px;
 }
@@ -53,7 +47,6 @@ h4 {
     background-color: black;
     color: white;
     margin-top: 12px;
-    font-family: DM Sans;
     width: 195px;
     height: 35  px;
 }
@@ -70,7 +63,6 @@ h4 {
     color: black;
     font-size: 18px;
     margin-top: 15px;
-    font-family: Poppins Light;
     border: 1px solid black;
     padding-left: 2%;
 }
