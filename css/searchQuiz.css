@@ -20,11 +20,11 @@ h4 {
 }
 .search-box
 {
-    width: 100%;
+    width: 27%;
     height: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 14px;
+    margin: auto;
 }
 .search-box input
 {
@@ -52,4 +52,15 @@ h4 {
 .search-box i {
     float: left;
     width: 26px;
+}
+
+input{
+    border: none;
+}
+.focus-visible-only:focus-visible{
+    outline: none;
+}
+span{
+    align-self: center;
+    margin-right: 10px;
 }
