@@ -8,7 +8,7 @@ h1 {
     font-size: 32px;
     text-align: center;
     font-weight: 600;
-    margin-top: 200px;
+    margin-top: 20px;
 }
 
 h4 {
@@ -50,4 +50,25 @@ input {
     color: white;
     margin-top: 12px;
     padding: 2px 60px;
+}
+.user_Name{
+    color: black;
+    text-align: left;
+    margin-top: 100px;
+    margin-left: 50px;
+
+}
+.subjec_Name{
+    color:  black;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 50px;
+
+}
+.total_Questions{
+    color: black;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 50px;
+
 }
