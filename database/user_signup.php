@@ -1,14 +1,13 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="";
-$conn=mysqli_connect($servername,$username,$password);
-if(!$conn)
+include "./connection.php";
+if(isset($_POST['save']))
 {
-    die("Connection Failed" . mysqli_connect_error());
+    $name=$_POST['txt_username'];
+    $email=$_POST['txt_email'];
+    $password=$_POST['txt_password'];
+    $usertype=$_POST['usertype'];
+
 }
-else
-{
-    echo"Connection  Sucessful";
-}
+
+
 ?>
