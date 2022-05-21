@@ -37,26 +37,26 @@
     <a href="../views/login.html"><h4>Already Registered ? Login</h4></a>
     <div class="login-box">
         <div class="textbox">
-			<form action="../database/user_signup.php" method="post">
-            <input type="text" name="txt_username" placeholder="Username" required>
+			<form action="../controller/user_signup.php" method="post">
+            <input type="text" name="username" placeholder="Username" required>
         </div>
         <div class="textbox">
         
-            <input type="text" name="txt_email" placeholder="Email" required>
+            <input type="text" name="useremail" placeholder="Email" required>
         </div>
         
         <div class="textbox">
         
-            <input type="password" name="txt_password" placeholder="Password" required>
+            <input type="password" name="userpassword" placeholder="Password" required>
         </div>
         <div class="dropdown">
             <select name="usertype">
-                <option>Select User</option>
-                <option >Teacher</option>
-                <option>Student</option>
+                <option >Select User</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Student">Student</option>
             </select>
         </div>
-        <input class="btn-login" type="submit" name="save"  value="sign up">
+        <input class="btn-login" type="submit" name="submit"  value="sign up">
 	</form>
     </div>
 	
