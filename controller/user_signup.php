@@ -7,32 +7,35 @@ if(isset($_POST['submit']))
     $password=$_POST['userpassword'];
     $usertype=$_POST['usertype'];
     
-
-    $query="SHOW TABLES LIKE 'users'";
-    $rs=mysqli_query($conn,$query);
-    if(mysqli_num_rows($rs)==0)
-    {
-        $q="create table users(name varchar(25),email varchar(25),password varchar(25),usertype varchar(25))";
-        $rs=mysqli_query($conn,$q);
-        $q3="insert into users(name,email,password,usertype) values('$name','$email','$password','$usertype')";
-        $rs3=mysqli_query($conn,$q3);
-        echo "Table not found";
-            
-    }
-    else
-    {
-       $q3="insert into users(name,email,password,usertype) values('$name','$email','$password','$usertype')";
-       if(mysqli_query($conn,$q3))
-       {
-           echo "<script>alert('New User has been added')</script>";
    
-       }
-       else
-       {
+       $query="SHOW TABLES LIKE 'users'";
+       $rs=mysqli_query($conn,$query);
+      if(mysqli_num_rows($rs)==0)
+     {
+         $q="create table users(name varchar(25) not null,email varchar(25) not null,password varchar(25) not null,usertype varchar(25) not null,PRIMARY KEY(email))";
+         $rs=mysqli_query($conn,$q) or die("Table creation failed");
+         $q3="insert into users(name,email,password,usertype) values('$name','$email','$password','$usertype')";
+         $rs3=mysqli_query($conn,$q3);
+         echo "<script>alert('New User has been added')</script>";
+         redirect("Good","../views/login.html");
+         header("location: ../views/login.html");
+            
+     }
+     else
+     {
+        $q3="insert into users(name,email,password,usertype) values('$name','$email','$password','$usertype')";
+        if(mysqli_query($conn,$q3))
+        {
+            echo "<script>alert('New User has been added')</script>";
+            header("location: ../views/login.html");
+        }
+        else
+        {
            echo 'error'.mysql_error($conn);
-       }
-    }
-}
+        
+        }
+     }
+ }
 ?>
 
  
