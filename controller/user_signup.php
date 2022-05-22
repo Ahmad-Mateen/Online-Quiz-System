@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
          $q3="insert into users(name,email,password,usertype) values('$name','$email','$password','$usertype')";
          $rs3=mysqli_query($conn,$q3);
          echo "<script>alert('New User has been added')</script>";
-         redirect("Good","../views/login.html");
+
          header("location: ../views/login.html");
             
      }
