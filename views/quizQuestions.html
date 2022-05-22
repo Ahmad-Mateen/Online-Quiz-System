@@ -40,36 +40,17 @@
     <h1>Make Quiz</h1>
     <h4>You can add five questions</h4>
     <div class="txt-question">
-        <input type="text" placeholder="Question">
+        <form action="../controller/quiz_questions.php" method="post">
+        <div>
+            <input type="text" placeholder="Question" name="question">
+            <input type="text" placeholder="Option 1" name="option1">
+            <input type="text" placeholder="Option 2" name="option2">
+            <input type="text" placeholder="Option 3" name="option3">
+            <input type="text" placeholder="Option 4" name="option4">
+            <input type="text" placeholder="Answer" name="answer">
+            <input type="text" placeholder="Description" name="description">
     </div>
-    <div class="outer">
-        <div class="inner">
-            <form action="#" method="post">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Random Access Memory</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Ram Memory</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Access Memory</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Static Memory</label>
-            </div>
-            <div class="txt-answer ">
-                <input type="text" placeholder="Answer">
-            </div>
-            <div class="txt-description">
-                <input type="text" placeholder="Description">
-            </div>
-
-            <button class="next"> Next Question </button>
-        </div>
+    <button class="next" type="submit" name="submit"> Next Question </button>
     </form>
     </div>
 
