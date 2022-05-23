@@ -1,4 +1,5 @@
 <?php
+session_start();
 include './connection.php';
 if(isset($_POST['submit']))
 {
@@ -14,6 +15,7 @@ if(mysqli_num_rows($result)==0)
     $q1="insert into subjects(subject_id,subject_name) values('$subject_Id','$subject_name')";
     $rs1=mysqli_query($conn,$q1);
     echo "<script>alert('Subject  has been added')</script>";
+    $_SESSION['sub_id'] = $subject_Id;
     header("location: ../views/quizQuestions.html");
 }
 else
@@ -21,8 +23,9 @@ else
     $q1="insert into subjects(subject_id,subject_name) values('$subject_Id','$subject_name')";
     $rs1=mysqli_query($conn,$q1);
     echo "<script>alert('Subject  has been added')</script>";
+    $_SESSION['sub_id'] = $subject_Id;
     header("location: ../views/quizQuestions.html");
 }
 }
-
+ 
 ?>

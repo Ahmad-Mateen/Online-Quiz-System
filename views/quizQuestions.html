@@ -42,15 +42,15 @@
     <div class="txt-question">
         <form action="../controller/quiz_questions.php" method="post">
         <div>
-            <input type="text" placeholder="Question" name="question">
-            <input type="text" placeholder="Option 1" name="option1">
-            <input type="text" placeholder="Option 2" name="option2">
-            <input type="text" placeholder="Option 3" name="option3">
-            <input type="text" placeholder="Option 4" name="option4">
-            <input type="text" placeholder="Answer" name="answer">
-            <input type="text" placeholder="Description" name="description">
+            <input type="text" placeholder="Question" name="question" required>
+            <input type="text" placeholder="Option a" name="option1" required>
+            <input type="text" placeholder="Option b" name="option2" required>
+            <input type="text" placeholder="Option c" name="option3" required>
+            <input type="text" placeholder="Option d" name="option4" required>
+            <input type="text" placeholder="Answer" name="answer" required>
+            <input type="text" placeholder="Description" name="description" required>
     </div>
-    <button class="next" type="submit" name="submit"> Next Question </button>
+    <button class="next" type="submit"  name="submit"> Next Question </button>
     </form>
     </div>
 
