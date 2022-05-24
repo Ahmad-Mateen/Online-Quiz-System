@@ -15,7 +15,15 @@ if(isset($_POST['submit']))
     }
     else
     {
-        header("location: ../views/teacher_dashboard.html");
+        if($usertype=="Teacher")
+        {
+            header("location: ../views/teacher_dashboard.html");
+        }
+        else
+        {
+            header("location: ../views/student_dashboard.html");
+        }
+        
     }
 
    

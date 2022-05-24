@@ -1,7 +1,6 @@
 <?php
 session_start();
 $subject_id=$_SESSION['sub_id'];
-
 include './connection.php';
 if(isset($_POST['submit']))
 {
@@ -23,6 +22,7 @@ if(isset($_POST['submit']))
      $q1 ="insert into quiz_questions(subject_id,question,option_a,option_b,option_c,option_d,answer,description) values('$subject_id','$question','$option_a','$option_b','$option_c','$option_d','$answer','$description')";
      $rs1=mysqli_query($conn,$q1);
      echo "<script>alert('Question has been added')</script>";
+     
     
 
  }
