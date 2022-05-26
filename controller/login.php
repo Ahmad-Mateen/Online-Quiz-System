@@ -6,9 +6,13 @@ if(isset($_POST['submit']))
     $password=$_POST['userpassword'];
     $usertype=$_POST['usertype'];
 
-    $query="select * from users where name='$name' && pwd='$password' && usertype='$usertype'";
-    $result=mysqli_query($conn,$query);
-    $total=mysqli_num_rows($result);
+    $sql = "SELECT * FROM users WHERE name=? && pwd=? && usertype=?"; 
+    $stmt = $conn->prepare($sql); 
+    $stmt->bind_param("sss", $name,$password,$usertype);
+    $stmt->execute();
+    $result = $stmt->get_result();
+   $total=mysqli_num_rows($result);
+    //var_dump($result);
     if($total==0)
     {
         echo "Email & Password are incorect";

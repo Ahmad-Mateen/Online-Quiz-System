@@ -11,11 +11,19 @@ if(isset($_POST['submit']))
  $option_d=$_POST['option4'];
  $answer=$_POST['answer'];
  $description=$_POST['description'];
-   
-     $q1 ="insert into quiz_questions(subject_id,question,option_a,option_b,option_c,option_d,answer,description) values('$subject_id','$question','$option_a','$option_b','$option_c','$option_d','$answer','$description')";
-     $rs1=mysqli_query($conn,$q1);
-     echo "<script>alert('Question has been added')</script>";
-     header("location: ../views/quiz_questions.php"); 
+     $stmt = $conn->prepare("INSERT INTO quiz_questions (subject_id,question,option_a,option_b,option_c,option_d,answer,description) VALUES (?, ? ,?, ?, ?, ?, ?, ?)");
+     $stmt->bind_param("ssssssss",$subject_id,$question,$option_a,$option_b,$option_c,$option_d,$answer,$description);
+     if($stmt->execute()==TRUE)
+     {
+        echo "<script>alert('Question has been added')</script>";
+        header("location: ../views/quizQuestions.html"); 
+       
+     }
+     
+     else
+     {
+           echo "Error".$stmt->error;
+     }
     
  
  }

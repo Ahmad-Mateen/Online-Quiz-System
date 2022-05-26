@@ -2,15 +2,24 @@
 include "./connection.php";
 if(isset($_POST['submit']))
 {
-    $name=$_POST['username'];
-    $email=$_POST['useremail'];
-    $password=$_POST['userpassword'];
-    $usertype=$_POST['usertype'];
-         $q3="insert into users(name,email,pwd,usertype) values('$name','$email','$password','$usertype')";
-         $rs3=mysqli_query($conn,$q3);
-         echo "<script>alert('New User has been added')</script>";
-
-         header("location: ../views/login.html");       
+    $user_name=$_POST['username'];
+    $user_email=$_POST['useremail'];
+    $user_password=$_POST['userpassword'];
+    $user_type=$_POST['usertype'];
+    $stmt = $conn->prepare("INSERT INTO  users (name,email,pwd,usertype) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss",$user_name,$user_email,$user_password,$user_type);
+          if($stmt->execute()==TRUE)
+          {
+            echo "<script>alert('New User has been added')</script>";
+           header("location: ../views/login.html");
+          }
+          
+          else
+          {
+                echo "Error".$stmt->error;
+          }
+         
+                
      }
      
      
