@@ -1,6 +1,18 @@
+<?php
+include './connection.php';
+if(isset($_POST['save']))
+{
+    $id=$_POST['sub_id'];
+    $name=$_POST['sub_name'];
+    // in progress
+     echo '<h4 class ="user_Name">' ."Name :". "Usman Khalid" . '</h4>';
+     echo '<h4 class ="subjec_Name">' ."Subject Name :   ". $name . '</h4>';
+     echo '<h4 class ="total_Questions">' ."Questions :". $id . '</h4>';
+     
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Take Quiz</title>
@@ -37,9 +49,6 @@
             </div>
         </div>
     </nav>
-    <h4 class="user_Name">Name: Usman Khalid</h1>
-        <h4 class="subjec_Name">Subject: Java_101</h1>
-        <h4 class="total_Questions">Questions: 05</h1>
     <h1>Quiz</h1>
     <h4>Please Check the correct answer</h4>
     <h2>Q:1 Ram Stands for ?</h2>

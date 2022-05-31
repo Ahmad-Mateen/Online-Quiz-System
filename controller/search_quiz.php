@@ -79,15 +79,21 @@ if(isset($_POST['submit']))
 			<tr>
 				<td><?php echo $rows['subject_id'];?></td>
 				<td><?php echo $rows['subject_name'];?></td>
-				 <td><input type="submit" name="submit"  value="Search Quiz"></td> <!--In Progress -->
+
+				<form method="post" action="./take_quiz.php">
+				<input type="hidden" name="sub_id"  value="<?php echo $rows ['subject_id']?>">
+				<input type="hidden" name="sub_name"  value="<?php echo $rows ['subject_name']?>">
+				 <td><input type="submit" name="save"  value="Search Quiz"></td>
+				</form>
 			</tr>
+		
 			<?php
 				}
 			
 				echo "</table>";
     }
-}
-		
+	
+}		
 ?>
 
 
