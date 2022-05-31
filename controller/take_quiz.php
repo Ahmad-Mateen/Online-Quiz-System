@@ -6,8 +6,26 @@ if(isset($_POST['save']))
     $name=$_POST['sub_name'];
     // in progress
      echo '<h4 class ="user_Name">' ."Name :". "Usman Khalid" . '</h4>';
-     echo '<h4 class ="subjec_Name">' ."Subject Name :   ". $name . '</h4>';
-     echo '<h4 class ="total_Questions">' ."Questions :". $id . '</h4>';
+     echo '<h4 class ="subjec_Name">' ."Quiz :   ". $name . '</h4>';
+     echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
+     // Fetching questions from db
+     $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
+     $stmt = $conn->prepare($sql); 
+     $stmt->bind_param("s", $id);
+     $stmt->execute();
+     $result = $stmt->get_result();
+    $total=mysqli_num_rows($result);
+     //var_dump($result);
+     if($total==0)
+     {
+        echo "<script>alert('No question found')</script>";
+     }
+     else
+     {
+        echo "<script>alert('question found')</script>";
+         
+     }
+ 
      
 }
 ?>
