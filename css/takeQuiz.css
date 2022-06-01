@@ -6,7 +6,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-h1 {
+.heading_1 {
 
     font-size: 32px;
     text-align: center;
@@ -15,7 +15,7 @@ h1 {
     color: white;
 }
 
-h4 {
+.heading_2 {
     text-align: center;
     font-size: 14px;
     text-align: center;
@@ -24,7 +24,7 @@ h4 {
     color: white;
 }
 
-h2 {
+.heading_3 {
     text-align: center;
     font-size: 22px;
     text-align: center;
@@ -37,14 +37,14 @@ h2 {
 .btn-radio {
     width: 100%;
     height: 100%;
-    color: white;
+    
 }
 
 input {
 
     text-align: center;
     justify-items: center;
-    color: white;
+    
     
 }
 
@@ -53,6 +53,7 @@ input {
     justify-content: center;
     margin: 0 0 0 25px;
     padding: 5px;
+    color: white;
 }
 
 .next {
@@ -67,9 +68,9 @@ input {
     margin-top: 100px;
     margin-left: 50px;
     color: white;
-
+    
 }
-.subjec_Name{
+.subject_Name{
     color:  black;
     text-align: left;
     margin-top: 5px;

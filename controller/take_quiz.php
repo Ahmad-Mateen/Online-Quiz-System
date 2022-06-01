@@ -1,32 +1,71 @@
 <?php
-include './connection.php';
+$id="Cs-101"; // just for testing
 if(isset($_POST['save']))
 {
     $id=$_POST['sub_id'];
     $name=$_POST['sub_name'];
-    // in progress
-     echo '<h4 class ="user_Name">' ."Name :". "Usman Khalid" . '</h4>';
-     echo '<h4 class ="subjec_Name">' ."Quiz :   ". $name . '</h4>';
+     echo '<h4 class ="user_Name">' ."Subject ID :". $id . '</h4>';
+     echo '<h4 class ="subject_Name">' ."Quiz :   ". $name . '</h4>';
      echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
-     // Fetching questions from db
-     $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
-     $stmt = $conn->prepare($sql); 
-     $stmt->bind_param("s", $id);
-     $stmt->execute();
-     $result = $stmt->get_result();
-    $total=mysqli_num_rows($result);
-     //var_dump($result);
-     if($total==0)
-     {
-        echo "<script>alert('No question found')</script>";
-     }
-     else
-     {
-        echo "<script>alert('question found')</script>";
-         
-     }
- 
-     
+     fetch_question($id);
+}
+// fetching questions from db
+function fetch_question($id)
+{
+    include './connection.php';
+    $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
+    $stmt = $conn->prepare($sql); 
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+   $total=mysqli_num_rows($result);
+   
+   
+    if($total==0)
+    {
+       echo "<script>alert('No question found')</script>";
+    }
+    else
+    {
+                   $rows=$result->fetch_assoc();
+                   echo '<form method="post">'; 
+               echo '<h4 class ="heading_1">' ."Quiz" .'</h4>';
+               echo '<h4 class ="heading_2">' ."Please check the correct answer". '</h4>';
+               echo '<h4 class ="heading_3">' .$rows['question'] . '</h4>';
+               echo '<div class="outer">';  
+               
+       echo '<div class="inner">';
+       echo '<div class="form-check">';
+       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_a'].'</label>';
+       echo '</div>';
+       echo '<div class="form-check">';
+       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_b'].'</label>';
+       echo '</div>';
+       echo '<div class="form-check">';
+       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_c'].'</label>';
+       echo '</div>';
+       echo '<div class="form-check">';
+       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_d'].'</label>';
+       echo '</div>';
+       
+       echo    '<button class="next" name="next_q" type="submit"> Next </button>';
+       echo '</div>';   
+       echo '</div>';
+       echo '</form>';
+
+    }
+}
+if(isset($_POST['next_q']))
+{
+      fetch_question($id);
+    
+    
+    // Page still in a progress
+    
 }
 ?>
 <!DOCTYPE html>
@@ -40,7 +79,6 @@ if(isset($_POST['save']))
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
     <link href="../css/takeQuiz.css" rel="stylesheet">
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
@@ -67,34 +105,7 @@ if(isset($_POST['save']))
             </div>
         </div>
     </nav>
-    <h1>Quiz</h1>
-    <h4>Please Check the correct answer</h4>
-    <h2>Q:1 Ram Stands for ?</h2>
-
-    <div class="outer">
-        <form action="#" method="post">
-        <div class="inner">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Random Access Memory</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Ram Memory</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Access Memory</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">Static Memory</label>
-            </div>
-        
-                <button class="next"> Next </button>
-        </div>
-    </form>
-    </div>
+   
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
     </script>

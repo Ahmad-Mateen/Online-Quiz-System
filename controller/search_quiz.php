@@ -83,7 +83,7 @@ if(isset($_POST['submit']))
 				<form method="post" action="./take_quiz.php">
 				<input type="hidden" name="sub_id"  value="<?php echo $rows ['subject_id']?>">
 				<input type="hidden" name="sub_name"  value="<?php echo $rows ['subject_name']?>">
-				 <td><input type="submit" name="save"  value="Search Quiz"></td>
+				 <td><input type="submit" name="save"  value="Start Quiz"></td>
 				</form>
 			</tr>
 		
