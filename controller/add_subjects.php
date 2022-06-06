@@ -11,7 +11,7 @@ if(isset($_POST['submit']))
     if($stmt->execute()==TRUE)
     {
      echo "<script>alert('Subject has been added')</script>";
-     header("location: ../views/quizQuestions.html");
+     header("location: ../controller/add_questions.php");
     }
     
     else

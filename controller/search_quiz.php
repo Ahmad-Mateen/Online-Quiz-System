@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +28,12 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">Take Quiz</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Make Quiz</a>
-					</li>
+					
 					<li class="nav-item">
 						<a class="nav-link" href="#">Contact Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../views/login.html">Logout</a>
 					</li>
 
 				</ul>
@@ -83,6 +86,14 @@ if(isset($_POST['submit']))
 				<form method="post" action="./take_quiz.php">
 				<input type="hidden" name="sub_id"  value="<?php echo $rows ['subject_id']?>">
 				<input type="hidden" name="sub_name"  value="<?php echo $rows ['subject_name']?>">
+				<!-- Set the session -->
+				<?php
+				$sub_id=$rows ['subject_id'];
+				$sub_name=$rows ['subject_name'];
+				$_SESSION['subject_Id'] = $sub_id;
+				$_SESSION['subject_name'] = $sub_name;
+				?>
+				
 				 <td><input type="submit" name="save"  value="Start Quiz"></td>
 				</form>
 			</tr>

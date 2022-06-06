@@ -11,7 +11,7 @@ if(isset($_POST['submit']))
       if($stmt->execute()==TRUE)
        {
           echo "<script>alert('New User has been added')</script>";
-          header("location: ../views/login.html");
+          header("location: ../views/user_login.html");
    }          
     else
          {

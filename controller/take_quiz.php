@@ -1,21 +1,31 @@
 <?php
-$id="Cs-101"; // just for testing
+session_start();
 if(isset($_POST['save']))
 {
     $id=$_POST['sub_id'];
     $name=$_POST['sub_name'];
-     echo '<h4 class ="user_Name">' ."Subject ID :". $id . '</h4>';
-     echo '<h4 class ="subject_Name">' ."Quiz :   ". $name . '</h4>';
-     echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
-     fetch_question($id);
+     fetch_question();
 }
-// fetching questions from db
-function fetch_question($id)
+// fetching questions 
+function fetch_question()
 {
+   
+    $subject_id=$_SESSION['subject_Id'];
+    $subject_name=$_SESSION['subject_name'];
     include './connection.php';
-    $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
-    $stmt = $conn->prepare($sql); 
-    $stmt->bind_param("s", $id);
+    echo '<h4 class ="user_Name">' ."Subject ID :".$subject_id.'</h4>';
+    echo '<h4 class ="subject_Name">' ."Subject name :". $subject_name .'</h4>';
+    echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
+
+    echo '<h4 class ="heading_1">' ."Quiz" .'</h4>';
+    echo '<h4 class ="heading_2">' ."Please check the correct answer". '</h4>';
+    
+    
+
+    $query="SELECT * FROM quiz_questions  WHERE subject_id =? ORDER BY rand()"; 
+    // $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
+    $stmt = $conn->prepare($query); 
+    $stmt->bind_param("s", $subject_id);
     $stmt->execute();
     $result = $stmt->get_result();
    $total=mysqli_num_rows($result);
@@ -29,45 +39,65 @@ function fetch_question($id)
     {
                    $rows=$result->fetch_assoc();
                    echo '<form method="post">'; 
-               echo '<h4 class ="heading_1">' ."Quiz" .'</h4>';
-               echo '<h4 class ="heading_2">' ."Please check the correct answer". '</h4>';
                echo '<h4 class ="heading_3">' .$rows['question'] . '</h4>';
                echo '<div class="outer">';  
                
        echo '<div class="inner">';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
-       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_a'].'</label>';
+       echo    '<input class="form-check-input"  type="radio" value='.$rows['option_a'].' name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_a'].'</label>';
        echo '</div>';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
-       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_b'].'</label>';
+       echo    '<input class="form-check-input" type="radio" value='.$rows['option_b'].' name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_b'].'</label>';
        echo '</div>';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
-       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_c'].'</label>';
+       echo    '<input class="form-check-input" type="radio" value='.$rows['option_c'].' name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_c'].'</label>';
        echo '</div>';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">';
-       echo    '<label class="form-check-label" for="flexRadioDefault1">'.$rows['option_d'].'</label>';
+       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" value='.$rows['option_d'].' id="flexRadioDefault1">';
+       echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_d'].'</label>';
        echo '</div>';
        
-       echo    '<button class="next" name="next_q" type="submit"> Next </button>';
+       echo    '<button class="next" name="next_question" type="submit"> Next </button>';
        echo '</div>';   
        echo '</div>';
        echo '</form>';
 
     }
 }
-if(isset($_POST['next_q']))
+
+if(isset($_POST['next_question']))
 {
-      fetch_question($id);
+     
+    $value=$_POST['flexRadioDefault'];
     
-    
-    // Page still in a progress
-    
+    include './connection.php';
+	$sql = "SELECT answer FROM quiz_questions WHERE answer=?"; 
+    $stmt = $conn->prepare($sql); 
+    $stmt->bind_param("s", $value);
+    $stmt->execute();
+    $result = $stmt->get_result();
+	$total=mysqli_num_rows($result);
+	if($total==0)
+    {
+        fetch_question();
+       // echo "Wrong";
+    }
+    else
+    {
+        $_SESSION['count']=+1;
+        fetch_question();
+        //echo "Correct";
+        
+     //   echo $_SESSION['count'];
+
+    }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,12 +124,13 @@ if(isset($_POST['next_q']))
                     <li class="nav-item">
                         <a class="nav-link" href="#">Take Quiz</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../views/makeQuiz.html">Make Quiz</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+						<a class="nav-link" href="../views/login.html">Logout</a>
+					</li>
 
                 </ul>
             </div>
@@ -114,5 +145,4 @@ if(isset($_POST['next_q']))
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
     </script>
 </body>
-
 </html>

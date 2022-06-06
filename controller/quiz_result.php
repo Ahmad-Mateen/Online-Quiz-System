@@ -1,14 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Make Quiz</title>
+    <title>Quiz Result</title>
     <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-    <link href="../css/makeQuiz.css" rel="stylesheet">
+    <link href="../css/result.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
                         <a class="nav-link" href="../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Take Quiz</a>
+                        <a class="nav-link" href="/views/searchQuiz.html">Take Quiz</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../views/makeQuiz.html">Make Quiz</a>
@@ -37,28 +38,22 @@
             </div>
         </div>
     </nav>
-    <h1>Create Subjects</h1>
-    <h4> Add Subjects and Quizzes</h4>
-    <div class="login-box">
-        <form method="post" action="../controller/add_subjects.php">
-            <div class="textbox">
-                <input type="text" placeholder="Subject Id" name="subject_id" required>
-                <input type="text" placeholder="Subject Name" name="subject_name" required>
-            </div>
-            <div class="btn-login">
-                <input type="submit" name="submit" value="Create Subject">
-            </div>
-        </form>
 
-    </div>
+    <h1>Score</h1>
+    <h4> Your Socore is </h4>
+    <h2>Your 0 questions are correct !</h1>
+
+        <div class="btn-description">
+            <input type="submit" value="View Description">
+        </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
-    </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
+        </script>
 </body>
 
 </html>
