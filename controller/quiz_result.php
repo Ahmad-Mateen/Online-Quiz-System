@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-    <link href="../css/result.css" rel="stylesheet">
+    <link href="../css/quiz_result.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,14 +41,66 @@
             </div>
         </div>
     </nav>
-
-    <h1>Score</h1>
-    <h4> Your Socore is </h4>
-    <h2>Your 0 questions are correct !</h1>
+    <?php
+            $score=$_SESSION['correct_answer'];
+            echo $score;
+            echo '<h1>'."Score".'</h1>';
+            echo '<h4 class ="subject_Name">' ."Total Questions are 05".'</h4>';
+            echo '<h4 class ="total_Questions">' ."Your $score questions are correct ".'</h4>';
+            unset($_SESSION["correct_answer"]);
+    ?>
+    
 
         <div class="btn-description">
-            <input type="submit" value="View Description">
+            <input type="submit" name= "submit" value="View Description">
         </div>
+        <?php
+        // Pending  
+//         if(isset($_POST['submit']))
+// {
+// 	include './connection.php';
+// 	$subject=$_POST['subject_name'];
+// 	$sql = "SELECT * FROM quiz_questions WHERE subject_name=?"; 
+//     $stmt = $conn->prepare($sql); 
+//     $stmt->bind_param("s", $subject);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+// 	$total=mysqli_num_rows($result);
+// 	if($total==0)
+//     {
+//         echo "<script>alert('No quiz found according to your serach')</script>";
+//     }
+//     else
+//     {
+//         echo "<table>";
+// 		echo  "<tr>";
+// 		echo	"<th>subject Name</th>";
+//         echo	"<th>Question</th>";
+//         echo	"<th>Answer</th>";
+//         echo	"<th>Description</th>";  
+// 		echo "</tr>";
+		 
+// 				while($rows=$result->fetch_assoc())
+// 				{
+// 			?>
+// 			<tr>
+// 				<td><?php echo $rows['subject_id'];?></td>
+// 				<td><?php echo $rows['subject_name'];?></td>
+
+// 				<input type="hidden" name="sub_id"  value="<?php echo $rows ['subject_id']?>">
+// 				<input type="hidden" name="sub_name"  value="<?php echo $rows ['question']?>">
+//                 <input type="hidden" name="sub_id"  value="<?php echo $rows ['answer']?>">
+// 				<input type="hidden" name="sub_name"  value="<?php echo $rows ['description']?>">
+			
+// 			</tr>
+		
+// 			<?php
+// 				}
+			
+// 				echo "</table>";
+//     }
+	
+// }     ?>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">

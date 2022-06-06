@@ -45,7 +45,7 @@ session_start();
     <form method="post" action="../controller/search_quiz.php">
         <div class="search-box" style="border: 1px solid black;">
            
-                <input type="search" class="focus-visible-only" name="subject_name" placeholder="Search">
+                <input type="search" class="focus-visible-only" name="subject_name" placeholder="Search" required>
                 <span class="fa fa-search form-control-feedback"></span>
         </div>
             <div class="btn-login">
@@ -53,58 +53,7 @@ session_start();
     </div>
 </form>
 <?php
-if(isset($_POST['submit']))
-{
-	include './connection.php';
-	$subject=$_POST['subject_name'];
-	$sql = "SELECT * FROM quiz_subjects WHERE subject_name=?"; 
-    $stmt = $conn->prepare($sql); 
-    $stmt->bind_param("s", $subject);
-    $stmt->execute();
-    $result = $stmt->get_result();
-	$total=mysqli_num_rows($result);
-	if($total==0)
-    {
-        echo "<script>alert('No quiz found according to your serach')</script>";
-    }
-    else
-    {
-        echo "<table>";
-		echo  "<tr>";
-		echo	"<th>subject Id</th>";
-		echo	"<th>subject Name</th>";
-		echo	"<th>Operation</th>";
-		echo "</tr>";
-		 
-				while($rows=$result->fetch_assoc())
-				{
-			?>
-			<tr>
-				<td><?php echo $rows['subject_id'];?></td>
-				<td><?php echo $rows['subject_name'];?></td>
-
-				<form method="post" action="./take_quiz.php">
-				<input type="hidden" name="sub_id"  value="<?php echo $rows ['subject_id']?>">
-				<input type="hidden" name="sub_name"  value="<?php echo $rows ['subject_name']?>">
-				<!-- Set the session -->
-				<?php
-				$sub_id=$rows ['subject_id'];
-				$sub_name=$rows ['subject_name'];
-				$_SESSION['subject_Id'] = $sub_id;
-				$_SESSION['subject_name'] = $sub_name;
-				?>
-				
-				 <td><input type="submit" name="save"  value="Start Quiz"></td>
-				</form>
-			</tr>
-		
-			<?php
-				}
-			
-				echo "</table>";
-    }
-	
-}		
+ 		
 ?>
 
 

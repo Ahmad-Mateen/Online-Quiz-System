@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 if(isset($_POST['save']))
 {
     $id=$_POST['sub_id'];
@@ -44,19 +45,19 @@ function fetch_question()
                
        echo '<div class="inner">';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input"  type="radio" value='.$rows['option_a'].' name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<input class="form-check-input"  type="radio" value='.$rows['option_a'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
        echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_a'].'</label>';
        echo '</div>';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" value='.$rows['option_b'].' name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<input class="form-check-input" type="radio" value='.$rows['option_b'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
        echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_b'].'</label>';
        echo '</div>';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" value='.$rows['option_c'].' name="flexRadioDefault" id="flexRadioDefault1">';
+       echo    '<input class="form-check-input" type="radio" value='.$rows['option_c'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
        echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_c'].'</label>';
        echo '</div>';
        echo '<div class="form-check">';
-       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" value='.$rows['option_d'].' id="flexRadioDefault1">';
+       echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" value='.$rows['option_d'].' id="flexRadioDefault1" required>';
        echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_d'].'</label>';
        echo '</div>';
        
@@ -69,10 +70,21 @@ function fetch_question()
 }
 
 if(isset($_POST['next_question']))
-{
-     
-    $value=$_POST['flexRadioDefault'];
+{   
+    $number=5;
+    $_SESSION["total_question"]=$_SESSION["total_question"]+1;
+    $value=$_SESSION["total_question"];
+
+    if($value>=$number)
+    {
+        unset($_SESSION["total_question"]);
+        echo "<script>alert('Your Quiz is over now!')</script>";
+        header("location: ./quiz_result.php");
     
+    }
+    else
+    {
+    $value=$_POST['flexRadioDefault'];
     include './connection.php';
 	$sql = "SELECT answer FROM quiz_questions WHERE answer=?"; 
     $stmt = $conn->prepare($sql); 
@@ -83,17 +95,19 @@ if(isset($_POST['next_question']))
 	if($total==0)
     {
         fetch_question();
-       // echo "Wrong";
+        // Wrong answer if we get zero rows
+
     }
     else
     {
-        $_SESSION['count']=+1;
-        fetch_question();
-        //echo "Correct";
-        
-     //   echo $_SESSION['count'];
-
+        //  $_SESSION["correct_answer"];
+         $_SESSION["correct_answer"]=$_SESSION["correct_answer"]+1;
+        fetch_question();    
     }
+    }
+
+
+    
 }
 ?>
 
@@ -107,7 +121,7 @@ if(isset($_POST['next_question']))
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-    <link href="../css/takeQuiz.css" rel="stylesheet">
+    <link href="../css/take_quiz.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
