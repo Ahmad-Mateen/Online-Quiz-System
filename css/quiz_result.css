@@ -44,6 +44,33 @@ h2 {
     color: white;
 
 }
+/* Table UI */
+table
+{
+    margin: 0 auto;
+			font-size: large;
+			border: 1px solid black;
+            margin-top: 20px;
+}
+td {
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+th {
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+td {
+    font-weight: lighter;
+}
 .navbar-nav a {
 	font-family: poppins;
 	font-size: 18px;

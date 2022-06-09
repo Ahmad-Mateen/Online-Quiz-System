@@ -43,65 +43,61 @@ error_reporting(0);
     </nav>
     <?php
             $score=$_SESSION['correct_answer'];
-            echo $score;
+            //echo $score;
             echo '<h1>'."Score".'</h1>';
             echo '<h4 class ="subject_Name">' ."Total Questions are 05".'</h4>';
             echo '<h4 class ="total_Questions">' ."Your $score questions are correct ".'</h4>';
-            unset($_SESSION["correct_answer"]);
+            
     ?>
     
 
         <div class="btn-description">
+            <form method="post">
             <input type="submit" name= "submit" value="View Description">
+</form>
         </div>
         <?php
-        // Pending  
-//         if(isset($_POST['submit']))
-// {
-// 	include './connection.php';
-// 	$subject=$_POST['subject_name'];
-// 	$sql = "SELECT * FROM quiz_questions WHERE subject_name=?"; 
-//     $stmt = $conn->prepare($sql); 
-//     $stmt->bind_param("s", $subject);
-//     $stmt->execute();
-//     $result = $stmt->get_result();
-// 	$total=mysqli_num_rows($result);
-// 	if($total==0)
-//     {
-//         echo "<script>alert('No quiz found according to your serach')</script>";
-//     }
-//     else
-//     {
-//         echo "<table>";
-// 		echo  "<tr>";
-// 		echo	"<th>subject Name</th>";
-//         echo	"<th>Question</th>";
-//         echo	"<th>Answer</th>";
-//         echo	"<th>Description</th>";  
-// 		echo "</tr>";
+        if(isset($_POST['submit']))
+        {
+        $subject=$_SESSION['subject_Id'];
+        //echo $subject;	
+         include './connection.php';
+    
+         $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
+         $stmt = $conn->prepare($sql); 
+         $stmt->bind_param("s", $subject);
+         $stmt->execute();
+         $result = $stmt->get_result();
+        
+             		echo '<table>';
+		 			echo '<tr>';
+					
+		 			
+                     echo  '<th>Question</th>';
+		 			echo  '<th>Answer</th>';
+                     echo  '<th>Description</th>';
+		 			echo  '<tr>';
+		 			while($rows=$result->fetch_assoc())
+	 	 			{
+	 	 		?>
+	 	 		<tr>
+	 				
+                     			
+                                  <td><?php echo $rows['question'];?></td>
+                                  <td><?php echo $rows['answer'];?></td>
+                                  <td><?php echo $rows['description'];?></td>
+
+                                  <?php unset($_SESSION['subject_Id']);?>
+                                  <?php unset($_SESSION['subject_name']);?>
+                                  <?php unset($_SESSION["correct_answer"]);?>
+                      		</tr>
+                      		<?php
+                      			}
+                     			echo  '<table>';
+                         
 		 
-// 				while($rows=$result->fetch_assoc())
-// 				{
-// 			?>
-// 			<tr>
-// 				<td><?php echo $rows['subject_id'];?></td>
-// 				<td><?php echo $rows['subject_name'];?></td>
-
-// 				<input type="hidden" name="sub_id"  value="<?php echo $rows ['subject_id']?>">
-// 				<input type="hidden" name="sub_name"  value="<?php echo $rows ['question']?>">
-//                 <input type="hidden" name="sub_id"  value="<?php echo $rows ['answer']?>">
-// 				<input type="hidden" name="sub_name"  value="<?php echo $rows ['description']?>">
-			
-// 			</tr>
-		
-// 			<?php
-// 				}
-			
-// 				echo "</table>";
-//     }
-	
-// }     ?>
-
+                 }
+         ?>        
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
         </script>

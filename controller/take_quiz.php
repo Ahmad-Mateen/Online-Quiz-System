@@ -1,18 +1,17 @@
 <?php
 session_start();
-error_reporting(0);
-if(isset($_POST['save']))
+//error_reporting(0); 
+if(isset($_POST['start']))
 {
-    $id=$_POST['sub_id'];
-    $name=$_POST['sub_name'];
-     fetch_question();
+    fetch_question();
 }
-// fetching questions 
+
 function fetch_question()
 {
    
     $subject_id=$_SESSION['subject_Id'];
     $subject_name=$_SESSION['subject_name'];
+    
     include './connection.php';
     echo '<h4 class ="user_Name">' ."Subject ID :".$subject_id.'</h4>';
     echo '<h4 class ="subject_Name">' ."Subject name :". $subject_name .'</h4>';
@@ -110,7 +109,6 @@ if(isset($_POST['next_question']))
     
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

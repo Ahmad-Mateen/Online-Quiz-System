@@ -7,7 +7,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-	<link href="../css/signup.css" rel="stylesheet">
+	<link href="../css/user_signup.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -49,9 +49,9 @@
         
             <input type="password" name="userpassword" placeholder="Password" required>
         </div>
-        <div class="dropdown">
-            <select name="usertype">
-                <option >Select User</option>
+        <div class="dropdown" required>
+            <select name="usertype" required>
+                <option disabled selected value="Select User">Select User</option>
                 <option value="Teacher">Teacher</option>
                 <option value="Student">Student</option>
             </select>
