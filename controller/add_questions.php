@@ -15,8 +15,22 @@ if(isset($_POST['submit']))
      $stmt->bind_param("ssssssss",$subject_id,$question,$option_a,$option_b,$option_c,$option_d,$answer,$description);
      if($stmt->execute()==TRUE)
      {
+        $num=5;
        // echo "<script>alert('Question has been added')</script>";
-        header("location: ./add_questions.php"); 
+       $_SESSION['quiz_question']=$_SESSION['quiz_question']+1;
+       $val=$_SESSION['quiz_question'];
+
+       if($val==$num)
+       {
+        unset($_SESSION['quiz_question']);
+        header("location: ../views/teacher_dashboard.html");
+        
+       }
+       else
+       {
+        header("location: ./add_questions.php");
+       }
+         
      }
 
      else
@@ -50,7 +64,7 @@ if(isset($_POST['submit']))
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../views/teacher_dashboard">Home</a>
+                        <a class="nav-link" href="../views/teacher_dashboard.html">Home</a>
                     </li>
                    
                     <li class="nav-item">

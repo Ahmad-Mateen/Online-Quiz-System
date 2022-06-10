@@ -25,16 +25,14 @@ error_reporting(0);
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../index.html">Home</a>
+                        <a class="nav-link" href="../views/student_dashboard.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/views/searchQuiz.html">Take Quiz</a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="../views/makeQuiz.html">Make Quiz</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a  class="nav-link"  href="#">Contact Us</a>
                     </li>
 
                 </ul>

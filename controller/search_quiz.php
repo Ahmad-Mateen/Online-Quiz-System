@@ -23,7 +23,7 @@ session_start();
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="../index.html">Home</a>
+						<a class="nav-link" href="../views/student_dashboard.html">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Take Quiz</a>
@@ -33,7 +33,7 @@ session_start();
 						<a class="nav-link" href="#">Contact Us</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../views/login.html">Logout</a>
+						<a class="nav-link" href="../views/user_login.html">Logout</a>
 					</li>
 
 				</ul>
@@ -60,7 +60,7 @@ session_start();
 		 if(!preg_match("/^[a-zA-Z-'\s]*$/",$subject))
 		 {
 		//    echo "Your Name must be contains only characters";
-		echo "<script>alert('Your Name must be contains only characters')</script>";
+		echo "<script>alert('Search keyword must be contains only characters')</script>";
 		 }
 		 else
 		 {
