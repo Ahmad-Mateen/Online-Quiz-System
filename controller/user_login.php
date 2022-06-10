@@ -5,31 +5,42 @@ if(isset($_POST['submit']))
     $name=$_POST['username'];
     $password=$_POST['userpassword'];
     $usertype=$_POST['usertype'];
-
-    $sql = "SELECT * FROM users WHERE name=? && pwd=? && usertype=?"; 
-    $stmt = $conn->prepare($sql); 
-    $stmt->bind_param("sss", $name,$password,$usertype);
-    $stmt->execute();
-    $result = $stmt->get_result();
-   $total=mysqli_num_rows($result);
-    //var_dump($result);
-    if($total==0)
+    if(!preg_match("/^[a-zA-Z-'\s]*$/",$name))
     {
-        echo "Email & Password are incorect";
+      echo "Your Name must be contains only characters";
     }
-    else
+    else if(!preg_match('/^[1-9][0-9\.]{0,15}$/',$password))
     {
-        if($usertype=="Teacher")
+     echo "Your Passord must be contains only numbers";
+    }
+    
+    else{
+        $sql = "SELECT * FROM users WHERE name=? && pwd=? && usertype=?"; 
+        $stmt = $conn->prepare($sql); 
+        $stmt->bind_param("sss", $name,$password,$usertype);
+        $stmt->execute();
+        $result = $stmt->get_result();
+       $total=mysqli_num_rows($result);
+        //var_dump($result);
+        if($total==0)
         {
-            header("location: ../views/teacher_dashboard.html");
+            echo "Email & Password are incorrect";
         }
         else
         {
-            header("location: ../views/student_dashboard.html");
+            if($usertype=="Teacher")
+            {
+                header("location: ../views/teacher_dashboard.html");
+            }
+            else
+            {
+                header("location: ../views/student_dashboard.html");
+            }
+            
         }
-        
+    
     }
-
+    
    
 }
 ?>

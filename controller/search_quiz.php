@@ -57,48 +57,58 @@ session_start();
 	 {
 	 	include './connection.php';
 	 	$subject=$_POST['subject_name'];
-	 	$sql = "SELECT * FROM quiz_subjects WHERE subject_name=?"; 
-	     $stmt = $conn->prepare($sql); 
-	     $stmt->bind_param("s", $subject);
-	     $stmt->execute();
-	     $result = $stmt->get_result();
-	 	$total=mysqli_num_rows($result);
-	 	if($total==0)
-	     {
-	         echo "<script>alert('No quiz found according to your serach')</script>";
-	     }
-	     else
-	     {
-			
-					echo '<table>';
-					echo '<tr>';
-					echo  '<th>Subject ID</th>';
-					echo  '<th>Subject Name</th>';
-					echo  '<th>Operation</th>';
-					echo  '<tr>';
-					while($rows=$result->fetch_assoc())
-	 				{
-	 			?>
-	 			<tr>
-	 				<td><?php echo $rows['subject_id'];?></td>
-	 				<td><?php echo $rows['subject_name'];?></td>
-					 <?php
-					 $sub_id=$rows['subject_id'];
-					 $sub_nam=$rows['subject_name'];
-					 $_SESSION['subject_Id']=$sub_id;
-					 $_SESSION['subject_name']=$sub_nam;
-					 ?>
-					 <form method="post" action="./take_quiz.php">
-					 <td><?php echo '<button type="submit" name="start">Start Quiz</button>'?></td>
-					 </form>
-	 			</tr>
-			 
-	 			<?php
-	 				}
-					echo  '<table>';
-			}		 
+		 if(!preg_match("/^[a-zA-Z-'\s]*$/",$subject))
+		 {
+		//    echo "Your Name must be contains only characters";
+		echo "<script>alert('Your Name must be contains only characters')</script>";
 		 }
-	
+		 else
+		 {
+			$sql = "SELECT * FROM quiz_subjects WHERE subject_name=?"; 
+			$stmt = $conn->prepare($sql); 
+			$stmt->bind_param("s", $subject);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$total=mysqli_num_rows($result);
+			if($total==0)
+			{
+				echo "<script>alert('No quiz found according to your serach')</script>";
+			}
+			else
+			{
+			   
+					   echo '<table>';
+					   echo '<tr>';
+					   echo  '<th>Subject ID</th>';
+					   echo  '<th>Subject Name</th>';
+					   echo  '<th>Operation</th>';
+					   echo  '<tr>';
+					   while($rows=$result->fetch_assoc())
+						{
+					?>
+					<tr>
+						<td><?php echo $rows['subject_id'];?></td>
+						<td><?php echo $rows['subject_name'];?></td>
+						<?php
+						$sub_id=$rows['subject_id'];
+						$sub_nam=$rows['subject_name'];
+						$_SESSION['subject_Id']=$sub_id;
+						$_SESSION['subject_name']=$sub_nam;
+						?>
+						<form method="post" action="./take_quiz.php">
+						<td><?php echo '<button type="submit" name="start">Start Quiz</button>'?></td>
+						</form>
+					</tr>
+				
+					<?php
+						}
+					   echo  '<table>';
+			   }		 
+			}
+	   
+		 }
+				 
+	 	
 			
  ?>	
 
