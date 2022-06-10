@@ -20,6 +20,11 @@ if(isset($_POST['submit']))
     {
      echo "Invalid email format";
     }
+    else if($user_type=="Select User")
+    {
+     echo "Validation Error ". " ! "."Select User type";
+    }
+    
     else
     {
      $stmt = $conn->prepare("INSERT INTO  users (name,email,pwd,usertype) VALUES (?, ?, ?, ?)");

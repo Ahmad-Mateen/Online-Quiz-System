@@ -7,11 +7,11 @@ if(isset($_POST['submit']))
     $usertype=$_POST['usertype'];
     if(!preg_match("/^[a-zA-Z-'\s]*$/",$name))
     {
-      echo "Your Name must be contains only characters";
+      echo "Validation Error ". " ! "."Your Name must be contains only characters";
     }
     else if(!preg_match('/^[1-9][0-9\.]{0,15}$/',$password))
     {
-     echo "Your Passord must be contains only numbers";
+     echo "Validation Error ". " ! "."Your Passord must be contains only numbers";
     }
     
     else{
@@ -24,7 +24,7 @@ if(isset($_POST['submit']))
         //var_dump($result);
         if($total==0)
         {
-            echo "Email & Password are incorrect";
+            echo "Error ". " ! ". "Email & Password are incorrect";
         }
         else
         {

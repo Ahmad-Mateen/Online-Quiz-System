@@ -24,11 +24,8 @@ if(isset($_POST['submit']))
            echo "Error".$stmt->error;
      }
     
- 
  }
  
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

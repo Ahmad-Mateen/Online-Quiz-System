@@ -7,7 +7,7 @@ if(isset($_POST['submit']))
    $subject_name=$_POST['subject_name'];
    if(!preg_match("/^[a-zA-Z-'\s]*$/",$subject_name))
    {
-     echo "Your Name must be contains only characters";
+     echo "Validation Error ". " ! "."Subject Name must be contains only characters";
    }
    else
    {
