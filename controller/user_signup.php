@@ -10,15 +10,15 @@ if(isset($_POST['submit']))
      
     if(!preg_match("/^[a-zA-Z-'\s]*$/",$user_name))
     {
-      echo "Your Name must be contains only characters";
+      echo "Validation Error ". " ! "."Your Name must be contains only characters";
     }
     else if(!preg_match('/^[1-9][0-9\.]{0,15}$/',$user_password))
     {
-     echo "Your Passord must be contains only numbers";
+     echo "Validation Error ". " ! "."Your Passord must be contains only numbers";
     }
     else if(!filter_var($user_email,FILTER_VALIDATE_EMAIL))
     {
-     echo "Invalid email format";
+     echo "Validation Error ". " ! "."Invalid email format";
     }
     else if($user_type=="Select User")
     {

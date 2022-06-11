@@ -13,7 +13,10 @@ if(isset($_POST['submit']))
     {
      echo "Validation Error ". " ! "."Your Passord must be contains only numbers";
     }
-    
+    else if($usertype=="Select User")
+    {
+     echo "Validation Error ". " ! "."Select User type";
+    }
     else{
         $sql = "SELECT * FROM users WHERE name=? && pwd=? && usertype=?"; 
         $stmt = $conn->prepare($sql); 
