@@ -1,6 +1,7 @@
 <?php
 session_start();
-$subject_id=$_SESSION['sub_id'];
+error_reporting(0); 
+$subject_name=$_SESSION['subjectName'];
 include './connection.php';
 if(isset($_POST['submit']))
 {
@@ -11,35 +12,77 @@ if(isset($_POST['submit']))
     $option_d=$_POST['option4'];
     $answer=$_POST['answer'];
     $description=$_POST['description'];
-     $stmt = $conn->prepare("INSERT INTO quiz_questions (subject_id,question,option_a,option_b,option_c,option_d,answer,description) VALUES (?, ? ,?, ?, ?, ?, ?, ?)");
-     $stmt->bind_param("ssssssss",$subject_id,$question,$option_a,$option_b,$option_c,$option_d,$answer,$description);
-     if($stmt->execute()==TRUE)
-     {
-        $num=5;
-       // echo "<script>alert('Question has been added')</script>";
-       $_SESSION['quiz_question']=$_SESSION['quiz_question']+1;
-       $val=$_SESSION['quiz_question'];
+    if(strlen($question)<10)
+    {
+        echo '<script>alert("Invalid question")</script>';
+    }
+    else if(strlen($$option_a)<10)
+    {
+        echo '<script>alert("Invalid option A")</script>';
+    }
+    else if(strlen($option_b)<10)
+    {
+        echo '<script>alert("Invalid option B")</script>';
+    }
+    else if(strlen($option_c)<10)
+    {
+        echo '<script>alert("Invalid option C")</script>';
+    }
+    else if(strlen($option_d)<10)
+    {
+        echo '<script>alert("Invalid option D")</script>';
+    }
+    else if(strlen($answer)<10)
+    {
+        echo '<script>alert("Invalid answer")</script>';
+    }
+    else if(strlen($description)<10)
+    {
+        echo '<script>alert("Invalid description")</script>';
 
-       if($val==$num)
-       {
-        unset($_SESSION['quiz_question']);
-        header("location: ../views/teacher_dashboard.html");
-        
-       }
-       else
-       {
-        header("location: ./add_questions.php");
-       }
-         
-     }
+    }
+    else
 
-     else
-     {
-           echo "Error".$stmt->error;
-     }
-    
+    {
+        $stmt = $conn->prepare("INSERT INTO quiz_questions (subject_name,question,option_a,option_b,option_c,option_d,answer,description) VALUES (?, ? ,?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss",$subject_name,$question,$option_a,$option_b,$option_c,$option_d,$answer,$description);
+        if($stmt->execute()==TRUE)
+        {
+          
+           $num=5;
+          $_SESSION['quiz_question']=$_SESSION['quiz_question']+1;
+          $val=$_SESSION['quiz_question'];
+   
+          if($val==$num)
+          {
+           unset($_SESSION['quiz_question']);
+           unset($_SESSION['subject_name']);
+           header("location: ../views/teacher_dashboard.html");
+           
+          }
+          else
+          {
+           header("location: ./add_questions.php");
+          }
+            
+        }
+   
+        else
+        {
+              echo "Error".$stmt->error;
+        }
+       
+    }
+     
  }
  
+if(isset($_GET['logout']))
+{
+    echo "Error";
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +117,7 @@ if(isset($_POST['submit']))
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
-						<a class="nav-link" href="../views/login.html">Logout</a>
+						<a class="nav-link"  href="../views/login.html">Logout</a>
 					</li>
 
                 </ul>
@@ -99,12 +142,6 @@ if(isset($_POST['submit']))
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
-    </script>
 </body>
 
 </html>

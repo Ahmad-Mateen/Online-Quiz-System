@@ -1,9 +1,9 @@
 <?php
 session_start();
+error_reporting(0); 
 include './connection.php';
 if(isset($_POST['submit']))
 {
-   $subject_Id=$_POST['subject_id'];
    $subject_name=$_POST['subject_name'];
    if(!preg_match("/^[a-zA-Z-'\s]*$/",$subject_name))
    {
@@ -11,13 +11,13 @@ if(isset($_POST['submit']))
    }
    else
    {
-    $stmt = $conn->prepare("INSERT INTO quiz_subjects (subject_id,subject_name) VALUES (?, ?)");
-    $stmt->bind_param("ss", $subject_Id, $subject_name);
-     $_SESSION['sub_id'] = $subject_Id;
+    $stmt = $conn->prepare("INSERT INTO quiz_subjects (subject_name) VALUES (?)");
+    $stmt->bind_param("s",$subject_name);
+     $_SESSION['subjectName'] = $subject_name;
  
      if($stmt->execute()==TRUE)
      {
-      echo "<script>alert('Subject has been added')</script>";
+    
       header("location: ../controller/add_questions.php");
      }
      
