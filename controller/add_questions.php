@@ -16,27 +16,27 @@ if(isset($_POST['submit']))
     {
         echo '<script>alert("Invalid question")</script>';
     }
-    else if(strlen($$option_a)<10)
+    else if(strlen($$option_a)<0)
     {
         echo '<script>alert("Invalid option A")</script>';
     }
-    else if(strlen($option_b)<10)
+    else if(strlen($option_b)<0)
     {
         echo '<script>alert("Invalid option B")</script>';
     }
-    else if(strlen($option_c)<10)
+    else if(strlen($option_c)<0)
     {
         echo '<script>alert("Invalid option C")</script>';
     }
-    else if(strlen($option_d)<10)
+    else if(strlen($option_d)<0)
     {
         echo '<script>alert("Invalid option D")</script>';
     }
-    else if(strlen($answer)<10)
+    else if(strlen($answer)<0)
     {
         echo '<script>alert("Invalid answer")</script>';
     }
-    else if(strlen($description)<10)
+    else if(strlen($description)<5)
     {
         echo '<script>alert("Invalid description")</script>';
 
@@ -76,13 +76,6 @@ if(isset($_POST['submit']))
      
  }
  
-if(isset($_GET['logout']))
-{
-    echo "Error";
-}
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,14 +103,12 @@ if(isset($_GET['logout']))
                         <a class="nav-link" href="../views/teacher_dashboard.html">Home</a>
                     </li>
                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="../views/makeQuiz.html">Make Quiz</a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
-						<a class="nav-link"  href="../views/login.html">Logout</a>
+						<a class="nav-link" name="logout"  href="./logout.php">Logout</a>
 					</li>
 
                 </ul>
