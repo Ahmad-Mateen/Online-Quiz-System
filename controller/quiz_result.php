@@ -34,6 +34,9 @@ error_reporting(0);
                     <li class="nav-item">
                         <a  class="nav-link"  href="#">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a  class="nav-link"  href="../views/user_login.html">Logout</a>
+                    </li>
 
                 </ul>
             </div>
@@ -57,11 +60,11 @@ error_reporting(0);
         <?php
         if(isset($_POST['submit']))
         {
-        $subject=$_SESSION['subject_Id'];
+        $subject=$_SESSION['subject_name'];
         //echo $subject;	
          include './connection.php';
     
-         $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
+         $sql = "SELECT * FROM quiz_questions WHERE subject_name=?"; 
          $stmt = $conn->prepare($sql); 
          $stmt->bind_param("s", $subject);
          $stmt->execute();

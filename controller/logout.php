@@ -8,23 +8,21 @@ $num=5;
 if($val<$num)
 {
     
-    // echo $sub;
-     
-     $sql="DELETE * FROM quiz_subjects WHERE subject_name=?";
-     $stmt = $conn->prepare($sql);
-     $stmt->bind_param("s",$sub);
-        if($stmt->execute()==TRUE)
+    
+    $update = $conn->prepare("DELETE FROM quiz_subjects WHERE subject_name= ?");
+    $update->bind_param('s', $sub);
+        if($update->execute()==TRUE)
         {
-            $stm = $conn->prepare("DELETE * FROM quiz_questions WHERE subject_name=?");
-            $stm->bind_param("s",$sub);
-            $stm->execute();
-            header("location: ../views/teacher_dashboard.html");
+            $stmt = $conn->prepare("DELETE FROM quiz_questions WHERE subject_name= ?");
+            $stmt->bind_param('s', $sub);
+            $stmt->execute();
+            header("location: ../views/user_login.html");
         }
           
 }
 else
 {
-    header("location: ../views/teacher_dashboard.html");
+    header("location: ../views/user_login.html");
 }
 
 ?>

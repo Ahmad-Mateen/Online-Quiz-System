@@ -32,6 +32,7 @@ session_start();
 					<li class="nav-item">
 						<a class="nav-link" href="#">Contact Us</a>
 					</li>
+					
 					<li class="nav-item">
 						<a class="nav-link" href="../views/user_login.html">Logout</a>
 					</li>
@@ -90,9 +91,7 @@ session_start();
 						<td><?php echo $rows['subject_id'];?></td>
 						<td><?php echo $rows['subject_name'];?></td>
 						<?php
-						$sub_id=$rows['subject_id'];
 						$sub_nam=$rows['subject_name'];
-						$_SESSION['subject_Id']=$sub_id;
 						$_SESSION['subject_name']=$sub_nam;
 						?>
 						<form method="post" action="./take_quiz.php">

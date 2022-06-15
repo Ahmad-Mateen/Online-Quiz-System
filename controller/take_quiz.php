@@ -9,12 +9,11 @@ if(isset($_POST['start']))
 function fetch_question()
 {
    
-    $subject_id=$_SESSION['subject_Id'];
     $subject_name=$_SESSION['subject_name'];
     
     include './connection.php';
-    echo '<h4 class ="user_Name">' ."Subject ID :".$subject_id.'</h4>';
-    echo '<h4 class ="subject_Name">' ."Subject name :". $subject_name .'</h4>';
+    
+    echo '<h4 class ="user_Name">' ."Subject name :". $subject_name .'</h4>';
     echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
 
     echo '<h4 class ="heading_1">' ."Quiz" .'</h4>';
@@ -22,10 +21,9 @@ function fetch_question()
     
     
 
-    $query="SELECT * FROM quiz_questions  WHERE subject_id =? ORDER BY rand()"; 
-    // $sql = "SELECT * FROM quiz_questions WHERE subject_id=?"; 
+    $query="SELECT * FROM quiz_questions  WHERE subject_name =? ORDER BY rand()"; 
     $stmt = $conn->prepare($query); 
-    $stmt->bind_param("s", $subject_id);
+    $stmt->bind_param("s", $subject_name);
     $stmt->execute();
     $result = $stmt->get_result();
    $total=mysqli_num_rows($result);
