@@ -44,7 +44,7 @@ error_reporting(0);
     </nav>
     <?php
             $score=$_SESSION['correct_answer'];
-            //echo $score;
+            
             echo '<h1>'."Score".'</h1>';
             echo '<h4 class ="subject_Name">' ."Total Questions are 05".'</h4>';
             echo '<h4 class ="total_Questions">' ."Your $score questions are correct ".'</h4>';

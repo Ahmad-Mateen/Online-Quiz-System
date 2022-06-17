@@ -9,9 +9,9 @@ if(isset($_POST['submit']))
     {
       echo "Validation Error ". " ! "."Your Name must be contains only characters";
     }
-    else if(!preg_match('/^[1-9][0-9\.]{0,15}$/',$password))
+    else if(!preg_match("/[A-Za-z0-9]+/",$password))
     {
-     echo "Validation Error ". " ! "."Your Passord must be contains only numbers";
+     echo "Validation Error ". " ! "."Invalid Format";
     }
     else if($usertype=="Select User")
     {
