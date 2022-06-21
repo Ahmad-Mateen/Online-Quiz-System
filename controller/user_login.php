@@ -1,6 +1,10 @@
 <?php
-include "./connection.php";
-if(isset($_POST['submit']))
+class user_login
+{
+    public function login()
+    {
+        include "./connection.php";
+        if(isset($_POST['submit']))
 {
     $name=$_POST['username'];
     $password=$_POST['userpassword'];
@@ -43,7 +47,9 @@ if(isset($_POST['submit']))
         }
     
     }
-    
-   
 }
+    }
+}
+$obj=new user_login();
+$obj->login();
 ?>
