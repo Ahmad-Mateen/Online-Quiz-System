@@ -1,7 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,26 +39,30 @@ error_reporting(0);
             </div>
         </div>
     </nav>
-    <?php
-            $score=$_SESSION['correct_answer'];
+</body>
+</html>
+<?php
+session_start();
+error_reporting(0);
+class quiz_result
+{
+    public function result()
+    {
+        $score=$_SESSION['correct_answer'];
             
-            echo '<h1>'."Score".'</h1>';
-            echo '<h4 class ="subject_Name">' ."Total Questions are 05".'</h4>';
-            echo '<h4 class ="total_Questions">' ."Your $score questions are correct ".'</h4>';
-            
-    ?>
-    
-
-        <div class="btn-description">
-            <form method="post">
-            <input type="submit" name= "submit" value="View Description">
-</form>
-        </div>
-        <?php
-        if(isset($_POST['submit']))
-        {
+        echo '<h1>'."Score".'</h1>';
+        echo '<h4 class ="subject_Name">' ."Total Questions are 05".'</h4>';
+        echo '<h4 class ="total_Questions">' ."Your $score questions are correct ".'</h4>';
+        echo '<div class="btn-description">';
+        echo '<form method="post">';
+        echo '<input type="submit" name= "submit" value="View Description">';
+        echo  '</form>';
+        echo '</div>';
+    }
+    public function view_description()
+    {
         $subject=$_SESSION['subject_name'];
-        //echo $subject;	
+        
          include './connection.php';
     
          $sql = "SELECT * FROM quiz_questions WHERE subject_name=?"; 
@@ -87,7 +88,7 @@ error_reporting(0);
                                   <td><?php echo $rows['question'];?></td>
                                   <td><?php echo $rows['answer'];?></td>
                                   <td><?php echo $rows['description'];?></td>
-
+                                    <!-- Unset the session now -->
                                   <?php unset($_SESSION['subject_Id']);?>
                                   <?php unset($_SESSION['subject_name']);?>
                                   <?php unset($_SESSION["correct_answer"]);?>
@@ -96,11 +97,15 @@ error_reporting(0);
                       			}
                      			echo  '<table>';
                          
-		 
-                 }
-         ?>        
+        
+                 }        
 
-       
-</body>
+    }
 
-</html>
+$obj=new quiz_result();
+$obj->result();
+if(isset($_POST['submit']))
+{
+    $obj->view_description();
+}
+?>

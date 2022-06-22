@@ -10,7 +10,7 @@
     <link href="../css/take_quiz.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Quizer</a> <button aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
@@ -35,7 +35,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
    
 
    
@@ -45,77 +45,119 @@
 <!-- Backend Code Here -->
 <?php
 session_start();
-// error_reporting(0);
+error_reporting(0);
 class take_quiz
 {
-    public function quiz()
+    
+   public function fetch_question()
     {
-        if(isset($_POST['start']))
-        {
-            fetch_question();
-        }
-
-    }
-    public function fetch_question()
-    {
-        $subject_name=$_SESSION['subject_name'];
-    
-        include './connection.php';
         
-        echo '<h4 class ="user_Name">' ."Subject name :". $subject_name .'</h4>';
-        echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
-    
-        echo '<h4 class ="heading_1">' ."Quiz" .'</h4>';
-        echo '<h4 class ="heading_2">' ."Please check the correct answer". '</h4>';
-        
-        
-    
-        $query="SELECT * FROM quiz_questions  WHERE subject_name =? ORDER BY rand()"; 
-        $stmt = $conn->prepare($query); 
-        $stmt->bind_param("s", $subject_name);
-        $stmt->execute();
-        $result = $stmt->get_result();
-       $total=mysqli_num_rows($result);
-       
-       
-        if($total==0)
-        {
-           echo "<script>alert('No question found')</script>";
-        }
-        else
-        {
-                       $rows=$result->fetch_assoc();
-                       echo '<form method="post">'; 
-                   echo '<h4 class ="heading_3">' .$rows['question'] . '</h4>';
-                   echo '<div class="outer">';  
-                   
-           echo '<div class="inner">';
-           echo '<div class="form-check">';
-           echo    '<input class="form-check-input"  type="radio" value='.$rows['option_a'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
-           echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_a'].'</label>';
-           echo '</div>';
-           echo '<div class="form-check">';
-           echo    '<input class="form-check-input" type="radio" value='.$rows['option_b'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
-           echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_b'].'</label>';
-           echo '</div>';
-           echo '<div class="form-check">';
-           echo    '<input class="form-check-input" type="radio" value='.$rows['option_c'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
-           echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_c'].'</label>';
-           echo '</div>';
-           echo '<div class="form-check">';
-           echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" value='.$rows['option_d'].' id="flexRadioDefault1" required>';
-           echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_d'].'</label>';
-           echo '</div>';
+            $subject_name=$_SESSION['subject_name'];
+           include './connection.php';
+           echo '<h4 class ="user_Name">' ."Subject name :". $subject_name .'</h4>';
+           echo '<h4 class ="total_Questions">' ."Questions :". "05" . '</h4>';
+           echo '<h4 class ="heading_1">' ."Quiz" .'</h4>';
+           echo '<h4 class ="heading_2">' ."Please check the correct answer". '</h4>';
            
-           echo    '<button class="next" name="next_question" type="submit"> Next </button>';
-           echo '</div>';   
-           echo '</div>';
-           echo '</form>';
-    
+           
+       
+           $query="SELECT * FROM quiz_questions  WHERE subject_name =? ORDER BY rand()"; 
+           $stmt = $conn->prepare($query); 
+           $stmt->bind_param("s", $subject_name);
+           $stmt->execute();
+           $result = $stmt->get_result();
+          $total=mysqli_num_rows($result);
+          
+          
+           if($total==0)
+           {
+              echo "<script>alert('No question found')</script>";
+           }
+           else
+           {
+                          $rows=$result->fetch_assoc();
+                          echo '<form method="post">'; 
+                      echo '<h4 class ="heading_3">' .$rows['question'] . '</h4>';
+                      echo '<div class="outer">';  
+                      
+              echo '<div class="inner">';
+              echo '<div class="form-check">';
+              echo    '<input class="form-check-input"  type="radio" value='.$rows['option_a'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
+              echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_a'].'</label>';
+              echo '</div>';
+              echo '<div class="form-check">';
+              echo    '<input class="form-check-input" type="radio" value='.$rows['option_b'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
+              echo    '<label class="form-check-label"   for="flexRadioDefault1">'.$rows['option_b'].'</label>';
+              echo '</div>';
+              echo '<div class="form-check">';
+              echo    '<input class="form-check-input" type="radio" value='.$rows['option_c'].' name="flexRadioDefault" id="flexRadioDefault1" required>';
+              echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_c'].'</label>';
+              echo '</div>';
+              echo '<div class="form-check">';
+              echo    '<input class="form-check-input" type="radio" name="flexRadioDefault" value='.$rows['option_d'].' id="flexRadioDefault1" required>';
+              echo    '<label class="form-check-label"  for="flexRadioDefault1">'.$rows['option_d'].'</label>';
+              echo '</div>';
+              
+              echo    '<button class="next" name="next_question" type="submit"> Next </button>';
+              echo '</div>';   
+              echo '</div>';
+              echo '</form>';
+       
+                    
         }
+       
     }
 
+    // For next Question
+    public function next()
+    {
+        $number=5;
+        $_SESSION["total_question"]=$_SESSION["total_question"]+1;
+       $value=$_SESSION["total_question"];
+
+      if($value>=$number)
+     {
+        unset($_SESSION["total_question"]);
+        echo "<script>alert('Your Quiz is over now!')</script>";
+        header("location: ./quiz_result.php");
+    
+     }
+     else
+     {
+     $value=$_POST['flexRadioDefault'];
+     include './connection.php';
+	 $sql = "SELECT answer FROM quiz_questions WHERE answer=?"; 
+     $stmt = $conn->prepare($sql); 
+     $stmt->bind_param("s", $value);
+     $stmt->execute();
+     $result = $stmt->get_result();
+	 $total=mysqli_num_rows($result);
+	 if($total==0)
+     {
+        $this->fetch_question();        
+        // Wrong answer if we get zero rows
+     }
+     else
+     {
+        //  $_SESSION["correct_answer"];
+         $_SESSION["correct_answer"]=$_SESSION["correct_answer"]+1;
+        $this->fetch_question();    
+     }
+     }
+    
+     }
 }
+
+
+
 $obj=new take_quiz();
-$obj->quiz();
+if(isset($_POST['start']))
+{
+    $obj->fetch_question();
+}
+if(isset($_POST['next_question']))
+{
+    $obj->next();
+}
+
 ?>
