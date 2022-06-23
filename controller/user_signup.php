@@ -1,9 +1,9 @@
 <?php
 // error_reporting(0);
-class user_signup
+class UserSignup
 {
   
-  function signup()
+  function signUp()
   {
     if(isset($_POST['submit']))
   {
@@ -56,7 +56,7 @@ class user_signup
   
   }
 }
-  $obj=new user_signup();
+  $obj=new UserSignup();
   $obj->signup();
 ?>
 

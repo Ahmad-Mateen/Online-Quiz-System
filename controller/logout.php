@@ -1,6 +1,6 @@
 <?php
 session_start();
-class logout
+class Logout
 {
     public function delete()
     {
@@ -29,7 +29,7 @@ class logout
         }
     }
 } 
-$obj=new logout();
+$obj=new Logout();
 $obj->delete();
 
 ?>

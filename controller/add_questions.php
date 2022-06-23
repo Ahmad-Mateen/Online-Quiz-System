@@ -61,7 +61,7 @@
 <?php
 session_start();
 error_reporting(0); 
-class add_questions
+class AddQuestions
 {
     public function questions()
     {
@@ -142,6 +142,6 @@ class add_questions
    
 }   
  }
-$obj=new add_questions();
+$obj=new AddQuestions();
 $obj->questions(); 
 ?>

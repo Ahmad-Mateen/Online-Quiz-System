@@ -10,7 +10,7 @@
     <link href="../css/take_quiz.css" rel="stylesheet">
 </head>
 <body>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Quizer</a> <button aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
@@ -35,7 +35,7 @@
                 </ul>
             </div>
         </div>
-    </nav> -->
+    </nav>
    
 
    
@@ -46,7 +46,7 @@
 <?php
 session_start();
 error_reporting(0);
-class take_quiz
+class TakeQuiz
 {
     
    public function fetch_question()
@@ -109,7 +109,7 @@ class take_quiz
     }
 
     // For next Question
-    public function next()
+    public function nextQuestion()
     {
         $number=5;
         $_SESSION["total_question"]=$_SESSION["total_question"]+1;
@@ -150,14 +150,14 @@ class take_quiz
 
 
 
-$obj=new take_quiz();
+$obj=new TakeQuiz();
 if(isset($_POST['start']))
 {
     $obj->fetch_question();
 }
 if(isset($_POST['next_question']))
 {
-    $obj->next();
+    $obj->nextQuestion();
 }
 
 ?>

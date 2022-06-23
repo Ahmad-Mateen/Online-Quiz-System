@@ -1,7 +1,7 @@
 <?php
-class user_login
+class UserLogin
 {
-    public function login()
+    function login()
     {
         include "./connection.php";
         if(isset($_POST['submit']))
@@ -50,6 +50,6 @@ class user_login
 }
     }
 }
-$obj=new user_login();
+$obj=new UserLogin();
 $obj->login();
 ?>

@@ -58,9 +58,9 @@
 
 <?php
 session_start();
- class search_quiz
+ class SearchQuiz
  {
-	public function quiz()
+	public function searchQuiz()
 	{
 		if(isset($_POST['submit']))
 		{
@@ -117,6 +117,6 @@ session_start();
 	}
 }
  }
- $obj=new search_quiz();
- $obj->quiz();
+ $obj=new SearchQuiz();
+ $obj->searchQuiz();
 ?>

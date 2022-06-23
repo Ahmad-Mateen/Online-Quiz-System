@@ -1,7 +1,7 @@
 <?php
 session_start();
 //error_reporting(0);
-class add_subjects
+class AddSubjects
 {
     public function subjects()
     {
@@ -34,6 +34,6 @@ class add_subjects
     }
 }
 }
-$obj=new add_subjects();
+$obj=new AddSubjects();
 $obj->subjects();  
 ?>

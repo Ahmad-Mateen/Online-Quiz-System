@@ -44,9 +44,9 @@
 <?php
 session_start();
 error_reporting(0);
-class quiz_result
+class QuizResult
 {
-    public function result()
+    public function quizResult()
     {
         $score=$_SESSION['correct_answer'];
             
@@ -102,8 +102,8 @@ class quiz_result
 
     }
 
-$obj=new quiz_result();
-$obj->result();
+$obj=new QuizResult();
+$obj->quizResult();
 if(isset($_POST['submit']))
 {
     $obj->view_description();
