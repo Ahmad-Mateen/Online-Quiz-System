@@ -3,7 +3,7 @@
 class UserSignup
 {
   
-  function signUp()
+  function signup()
   {
     if(isset($_POST['submit']))
   {

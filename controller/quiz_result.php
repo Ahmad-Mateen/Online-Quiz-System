@@ -59,7 +59,7 @@ class QuizResult
         echo  '</form>';
         echo '</div>';
     }
-    public function view_description()
+    public function viewDescription()
     {
         $subject=$_SESSION['subject_name'];
         
@@ -106,6 +106,6 @@ $obj=new QuizResult();
 $obj->quizResult();
 if(isset($_POST['submit']))
 {
-    $obj->view_description();
+    $obj->viewDescription();
 }
 ?>

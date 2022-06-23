@@ -3,7 +3,7 @@ session_start();
 //error_reporting(0);
 class AddSubjects
 {
-    public function subjects()
+    public function addSubjects()
     {
       include './connection.php';
       if(isset($_POST['submit']))
@@ -35,5 +35,5 @@ class AddSubjects
 }
 }
 $obj=new AddSubjects();
-$obj->subjects();  
+$obj->addSubjects();  
 ?>

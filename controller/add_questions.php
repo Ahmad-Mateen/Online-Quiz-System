@@ -63,7 +63,7 @@ session_start();
 error_reporting(0); 
 class AddQuestions
 {
-    public function questions()
+    public function addQuestions()
     {
         $subject_name=$_SESSION['subjectName'];
         include './connection.php';
@@ -143,5 +143,5 @@ class AddQuestions
 }   
  }
 $obj=new AddQuestions();
-$obj->questions(); 
+$obj->addQuestions(); 
 ?>

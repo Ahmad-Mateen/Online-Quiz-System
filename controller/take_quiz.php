@@ -49,7 +49,7 @@ error_reporting(0);
 class TakeQuiz
 {
     
-   public function fetch_question()
+   public function fetchQuestion()
     {
         
             $subject_name=$_SESSION['subject_name'];
@@ -134,14 +134,14 @@ class TakeQuiz
 	 $total=mysqli_num_rows($result);
 	 if($total==0)
      {
-        $this->fetch_question();        
+        $this->fetchQuestion();        
         // Wrong answer if we get zero rows
      }
      else
      {
         //  $_SESSION["correct_answer"];
          $_SESSION["correct_answer"]=$_SESSION["correct_answer"]+1;
-        $this->fetch_question();    
+        $this->fetchQuestion();    
      }
      }
     
@@ -153,7 +153,7 @@ class TakeQuiz
 $obj=new TakeQuiz();
 if(isset($_POST['start']))
 {
-    $obj->fetch_question();
+    $obj->fetchQuestion();
 }
 if(isset($_POST['next_question']))
 {
